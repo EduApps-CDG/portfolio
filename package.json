@@ -4,7 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --env development"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
   },
   "keywords": [],
   "author": "Eduardo P. Gomez",
