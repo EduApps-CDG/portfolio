@@ -12,6 +12,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta charSet="UTF-8" />
+        <meta name="google-site-verification" content="t6vNmMB-j4llBciG2Rq_LfsaTELr1d6bmms4H8bXjoI" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta name="title" content="Eduardo Procopio Gomez | Desenvolvedor" />
