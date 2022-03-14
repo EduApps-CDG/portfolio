@@ -1,0 +1,154 @@
+@import url("css/default.css");
+
+
+body.theme-dark {
+  --bg:     013, 013, 013;
+  --bg2:    000, 000, 000;
+  --color:  204, 000, 000;
+  --color2: 025, 025, 025;
+  --txt-1:  255, 255, 255;
+  --txt:    242, 242, 242;
+  background:rgb(var(--bg));
+  color: rgb(var(--txt));
+}
+
+body.theme-light {
+  --bg:     242, 242, 242;
+  --bg2:    255, 255, 255;
+  --color:  204, 000, 000;
+  --color2: 255, 255, 255;
+  --txt-1:  000, 000, 000;
+  --txt:    013, 013, 013;
+  background:rgb(var(--bg));
+}
+
+main {
+  background-color: rgba(var(--bg2),0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 80%;
+}
+
+@media all and (min-width: 750px) {
+  main {
+    width: 40%;
+  }
+}
+
+h1 {
+  text-align: center;
+  color: rgb(var(--txt-1));
+}
+
+div.centerizer {
+  margin: auto;
+  width: 100%;
+  position: relative;
+}
+
+div.centerizer > * {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+div.centerizer-h, footer {
+  display: flex;
+  justify-content: center;
+}
+
+p.centerizer, h2.centerizer {
+  text-align: center;
+}
+
+@media screen and (orientation:portrait) {
+  div.centerizer.presentation {
+    height: calc(100vh - 60px)
+  }
+}
+
+button {
+  background: rgb(var(--bg2));
+  border: 0;
+  color: rgb(var(--txt));
+  font-size: 1em;
+  padding: 5px 25px;
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  cursor: pointer;
+}
+
+/*div.btn-border {
+  display: inline;
+  padding 
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}*/
+
+.btn-border {
+  width: fit-content;
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  padding:3px;
+  background: rgb(var(--color2));
+  cursor: pointer;
+}
+
+.btn-border:hover {
+  background: rgb(var(--color));
+}
+
+.sawtooth {
+  height: 25px;
+  width: 100%;
+  background-image: url("img/sawtooth.svg");
+  position: relative;
+}
+
+section {
+  padding: 10px;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+.view {
+  border: 20px solid transparent;
+  border-image: url(img/block.svg) stretch;
+  border-image-width: 70px 60px 70px 60px;
+  border-image-slice: 49% fill;
+}
+
+.rtl {
+  display: flex;
+  justify-content: flex-end;
+}
+
+body::-webkit-scrollbar {
+  background: rgb(var(--bg2));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color));
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+}
+
+footer {
+  background: rgb(var(--bg2));
+  flex-direction: column;
+  align-items: center;
+}
+
+footer > .contact-icon {
+  width: 50%;
+  min-width: 224px;
+  margin-top: 34px;
+}
