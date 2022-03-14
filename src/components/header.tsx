@@ -24,7 +24,7 @@ export default class Header extends React.Component {
         <svg className="header-iconSvg" width="120" height="80">
           <path d="M 0 0 L 0 60 L 20 80 L 100 80 L 120 60 L 120 0 L 0 0 Z" />
           <foreignObject width="120" height="80">
-            <Image width="80" height="80" src={logo} layout="fixed"/>
+            <Image width="80" height="80" src={logo} layout="fixed" alt="Eduardo P. Gomez"/>
           </foreignObject>
         </svg>
         <nav>

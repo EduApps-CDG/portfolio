@@ -42,7 +42,7 @@ export default class App extends React.Component {
           <div className="centerizer-h">
             <div className="scroll-h">
               <View className="proj">
-                <Image width="128" height="128" src={netflocos} layout="fixed"/>
+                <Image width="128" height="128" src={netflocos} layout="fixed" alt="Netflocos"/>
                 <div className="short-content">
                   <h3>Netflocos</h3>
                   <p>
@@ -59,7 +59,7 @@ export default class App extends React.Component {
                 </div>
               </View>
               <View className="proj">
-                <Image width="128" height="128" src={arthos} layout="fixed"/>
+                <Image width="128" height="128" src={arthos} layout="fixed" alt="ARTHOS"/>
                 <div className="short-content">
                   <h3>ARTHOS</h3>
                   <p>
