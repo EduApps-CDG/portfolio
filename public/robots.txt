@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /google56122ce220042bdc.html
+
+Sitemap: http://www.example.com/sitemap.xml

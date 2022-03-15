@@ -1,3 +1,4 @@
 module.exports = {
-  distDir: 'build'
+  distDir: 'build',
+  compress:true
 }

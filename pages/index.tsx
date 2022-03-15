@@ -42,8 +42,7 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
         <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Eduardo Procopio Gomez" />
         <title>
-          Eduardo Procopio Gomez |
-          <Translations lang={this.props.userLang} id="title" />
+          Eduardo Procopio Gomez | <Translations lang={this.props.userLang} id="title" />
         </title>
         <link rel="canonical" href="https://eduardo.ix.tc"/>
         <html lang={this.props.locale} />
