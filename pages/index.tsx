@@ -11,23 +11,25 @@ import Image from "next/image";
 
 import arthos from "../dist/img/arthos.png";
 import netflocos from "../dist/img/netflocos.png";
+import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import Translations, { Language } from "../src/translations";
 
-export default class App extends React.Component {
+export default class App extends React.Component<{userLang:Language}> {
   render():React.ReactNode {
     return <>
       <Header/>
       <GParticles/>
-      <Welcome/>
+      <Welcome lang={this.props.userLang}/>
       <div className="sections">
         <Sawtooth/>
         <section style={{
           background: "rgb(var(--bg2))"
         }}>
-          <h2 className="centerizer">Sobre mim</h2>
+          <h2 className="centerizer">
+            <Translations lang={this.props.userLang} id="about_me"/>
+          </h2>
           <p>
-            Moro em Rio Grande do Sul no Brasil.
-            Gosto muito de técnologia e por isso decidi me tornar um desenvolvedor.
-            Meus principais passa-tempos são praticar programação e tocar guitarra.
+            <Translations lang={this.props.userLang} id="about_me_txt" />
           </p>
         </section>
         <div style={{
@@ -38,7 +40,9 @@ export default class App extends React.Component {
         <section style={{
           backdropFilter: "blur(10px)"
         }}>
-          <h2 className="centerizer">Meus projetos</h2>
+          <h2 className="centerizer">
+            <Translations lang={this.props.userLang} id="my_proj"/>
+          </h2>
           <div className="centerizer-h">
             <div className="scroll-h">
               <View className="proj">
@@ -46,15 +50,14 @@ export default class App extends React.Component {
                 <div className="short-content">
                   <h3>Netflocos</h3>
                   <p>
-                    Um aplicativo de streaming baseado na Netflix para o meu curso Técnico em Informática.
-                    Minha equipe de 2 pessoas conseguiu completar em 15 dias.
-                    O projeto ficou incrível e surpreendemos o professor, espero talvez um dia continuar o projeto com meu amigo.
-                    Inclui um app e um banco de dados para pôr os videos.
+                    <Translations lang={this.props.userLang} id="netflocos" />
                   </p>
                   <Rtl style={{
                     padding: "10px"
                   }}>
-                    <Button href="https://github.com/ArthurEly/projetointegrador">Visualizar Código</Button>
+                    <Button href="https://github.com/ArthurEly/projetointegrador">
+                      <Translations lang={this.props.userLang} id="view_code" />
+                    </Button>
                   </Rtl>
                 </div>
               </View>
@@ -63,14 +66,14 @@ export default class App extends React.Component {
                 <div className="short-content">
                   <h3>ARTHOS</h3>
                   <p>
-                    O projeto final do meu curso Técnico em Informática.
-                    Consiste em um sistema de Ordem de Serviço para veículos.
-                    O projeto inclui um app para clientes, um banco de dados e um programa desktop para colaboladores.
+                    <Translations lang={this.props.userLang} id="arthos" />
                   </p>
                   <Rtl style={{
                     padding: "10px"
                   }}>
-                    <Button href="https://github.com/ArthurEly/projetoIntegradorFinal">Visualizar Código</Button>
+                    <Button href="https://github.com/ArthurEly/projetoIntegradorFinal">
+                      <Translations lang={this.props.userLang} id="view_code" />
+                    </Button>
                   </Rtl>
                 </div>
               </View>
@@ -81,4 +84,35 @@ export default class App extends React.Component {
       <Footer/>
     </>;
   }
+}
+
+/**
+ * retorna a linguagem do navegador por meio da HTTP Request recebida.
+ * @param ctx 
+ * @returns 
+ */
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  let langs = ctx.req.headers["accept-language"].split(/(\;|\,)/).filter((val, i, arr) => {
+    return !(
+      val == "," ||
+      val == ";" ||
+      val.startsWith("q=")
+    )
+  });
+
+  let l:string[] = [];
+
+  langs.forEach((str:string) => {
+    l.push(str.split("-")[0].toUpperCase());
+  });
+
+  l = l.filter((str, i, self) => {
+    return self.indexOf(str) == i;
+  });
+
+  return {
+    props: {
+      userLang: l[0]
+    }
+  };
 }

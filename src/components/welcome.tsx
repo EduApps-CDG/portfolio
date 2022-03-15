@@ -1,10 +1,10 @@
 import { useRouter, withRouter } from "next/router";
 import * as React from "react";
-import Translation from "../translations";
+import Translation, { TranslateableComponent } from "../translations";
 import RouteredComponent from "../utils";
 import ContactIcon from "./contact-icon";
 
-export default class Welcome extends React.Component {
+export default class Welcome extends TranslateableComponent {
   render(): React.ReactNode {
     return <>
       <div className="centerizer" style={{
@@ -12,12 +12,12 @@ export default class Welcome extends React.Component {
       }}>
         <main>
           <h1>
-            <Translation id="welcome_1"/>
+            <Translation id="welcome_1" lang={this.props.lang}/>
             <br />
-            <Translation id="welcome_2"/>
+            <Translation id="welcome_2" lang={this.props.lang}/>
           </h1>
           <p className="centerizer">
-            <Translation id="welcome_3" />
+            <Translation id="welcome_3" lang={this.props.lang}/>
           </p>
           <br/>
           <ContactIcon/>
