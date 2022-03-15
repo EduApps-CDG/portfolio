@@ -123,13 +123,23 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
  * @returns 
  */
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  let langs = ctx.req.headers["accept-language"].split(/(\;|\,)/).filter((val, i, arr) => {
-    return !(
-      val == "," ||
-      val == ";" ||
-      val.startsWith("q=")
-    )
-  });
+  let langs;
+  try {
+    langs = ctx.req.headers["accept-language"].split(/(\;|\,)/).filter((val, i, arr) => {
+      return !(
+        val == "," ||
+        val == ";" ||
+        val.startsWith("q=")
+      )
+    });
+  } catch {
+    return {
+      props: {
+        userLang: "EN",
+        locale: "en-US"
+      }
+    }
+  }
 
   let l:string[] = [];
   let l2:string[] = [];
