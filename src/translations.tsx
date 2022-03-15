@@ -1,13 +1,12 @@
-import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { NextIncomingMessage } from "next/dist/server/request-meta";
-import { NextRouter, useRouter, withRouter } from "next/router";
-import { NextResponse } from "next/server";
+import { NextRouter, withRouter } from "next/router";
 import React from "react";
 
 export type Language = "PT"|"EN";
 
-class Translations {
+export class TranslationHelper {
   protected PT:typeof this.EN = {
+    title: "Desenvolvedor",
+    meta_description: "Programação de Software e websites é o meu principal meio de lazer, contate-me clicando aqui!",
     welcome_1: "Olá!",
     welcome_2: "Eu sou Eduardo Procopio Gomez!",
     welcome_3: "Desenvolvedor aspirante buscando sua primeira oportunidade de emprego.",
@@ -20,6 +19,8 @@ class Translations {
   };
 
   protected EN:{[index:string]:string} = {
+    title: "Developer",
+    meta_description: "Software and Website Programming is my main means of recreation, contact me by clicking here!",
     welcome_1: "What's up!",
     welcome_2: "I am Eduardo Procopio Gomez!",
     welcome_3: "Aspiring developer looking for his first job opportunity.",
@@ -29,9 +30,14 @@ class Translations {
     view_code: "View Code",
     netflocos: "A streaming app based on Netflix for my Computer Technician course. My team of 2 people managed to complete it in 15 days. The project turned out amazing and we surprised the professor, I hope maybe one day I will continue the project with my friend. It includes an app and a database to upload the videos.",
     arthos: "The final project of my Computer Technician course. It consists of a Service Order system for vehicles. The project includes an app for clients, a database and a desktop program for collaborators."
-  }
+  };
+
+  static LANG_LIST = [
+    "PT", "EN"
+  ]
+
   static get(routes:NextRouter, id:string, lang?:Language):string {
-    let l = new Translations()[Translations.checkLang(lang)];
+    let l = new TranslationHelper()[TranslationHelper.checkLang(lang)];
 
     return l[id];
   }
@@ -80,7 +86,7 @@ export class TranslateableComponent extends React.Component<{lang?:Language}> {}
 class Translation extends React.Component<TranslationProps> {
   render() {
     return <>
-      {Translations.get(this.props.router,this.props.id, this.props.lang)}
+      {TranslationHelper.get(this.props.router,this.props.id, this.props.lang)}
     </>
   }
 }

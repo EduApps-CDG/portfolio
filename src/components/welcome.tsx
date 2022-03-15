@@ -1,7 +1,5 @@
-import { useRouter, withRouter } from "next/router";
 import * as React from "react";
 import Translation, { TranslateableComponent } from "../translations";
-import RouteredComponent from "../utils";
 import ContactIcon from "./contact-icon";
 
 export default class Welcome extends TranslateableComponent {

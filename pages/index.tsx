@@ -11,12 +11,44 @@ import Image from "next/image";
 
 import arthos from "../dist/img/arthos.png";
 import netflocos from "../dist/img/netflocos.png";
-import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import Translations, { Language } from "../src/translations";
+import { GetServerSidePropsContext } from "next";
+import Translations, { Language, TranslationHelper } from "../src/translations";
+import Head from "next/head";
+import { NextRouter, withRouter } from "next/router";
 
-export default class App extends React.Component<{userLang:Language}> {
+class App extends React.Component<{userLang:Language,locale:string, router:NextRouter}> {
   render():React.ReactNode {
     return <>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="google-site-verification" content="t6vNmMB-j4llBciG2Rq_LfsaTELr1d6bmms4H8bXjoI" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <meta name="title" content={"Eduardo Procopio Gomez | " + TranslationHelper.get(this.props.router,`title`,this.props.userLang)} />
+        <meta property="og:locale" content={this.props.locale}/>
+        <meta property="og:site_name" content="Portfolio de Eduardo Procopio Gomez" />
+        <meta property="og:title" content={"Eduardo Procopio Gomez | " + TranslationHelper.get(this.props.router,`title`,this.props.userLang)} />
+        <meta property="og:url" content="https://eduardo.ix.tc" />
+        <meta property="og:description" content={TranslationHelper.get(this.props.router, `meta_description`, this.props.userLang)} />
+        <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content="Eduardo" />
+        <meta property="profile:last_name" content="Procopio Gomez" />
+        <meta property="profile:gender" content="male" />
+        <meta name="description" content={TranslationHelper.get(this.props.router, `meta_description`, this.props.userLang)} />
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="author" content="Eduardo Procopio Gomez" />
+        <title>
+          Eduardo Procopio Gomez |
+          <Translations lang={this.props.userLang} id="title" />
+        </title>
+        <link rel="canonical" href="https://eduardo.ix.tc"/>
+        <html lang={this.props.locale} />
+      </Head>
+
       <Header/>
       <GParticles/>
       <Welcome lang={this.props.userLang}/>
@@ -101,18 +133,45 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   });
 
   let l:string[] = [];
+  let l2:string[] = [];
 
   langs.forEach((str:string) => {
-    l.push(str.split("-")[0].toUpperCase());
+    l.push(str.includes("-") ? str.split("-")[0].toUpperCase() : str.toUpperCase());
+    if (str.includes("-")) {
+      l2.push(str);
+    }
   });
 
   l = l.filter((str, i, self) => {
     return self.indexOf(str) == i;
   });
 
+
+  let r: string = "en-US";
+
+  for (let y in TranslationHelper.LANG_LIST) {
+    const lang = TranslationHelper.LANG_LIST[y];
+    let done = false;
+
+    for (let x in l2) {
+      if (l2[x].startsWith(lang.toLowerCase()) + "-") {
+        r = l2[x];
+        done = true;
+        break;
+      }
+    }
+
+    if (done) {
+      break;
+    }
+  }
+
   return {
     props: {
-      userLang: l[0]
+      userLang: l[0],
+      locale: r
     }
   };
 }
+
+export default withRouter(App);

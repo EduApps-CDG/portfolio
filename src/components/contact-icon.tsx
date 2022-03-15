@@ -1,6 +1,5 @@
 
 import * as React from "react";
-import * as Mdi from "@mdi/react";
 import * as ico from "@mdi/js";
 import StandardIcon from "./standard-icon";
 
