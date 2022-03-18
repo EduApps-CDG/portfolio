@@ -22,6 +22,8 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
       <Head>
         <meta charSet="UTF-8" />
         <meta name="google-site-verification" content="t6vNmMB-j4llBciG2Rq_LfsaTELr1d6bmms4H8bXjoI" />
+        <meta name="robots" content="all" />
+        <meta name="revisit-after" content="7 days" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -38,8 +40,6 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
         <meta property="profile:last_name" content="Procopio Gomez" />
         <meta property="profile:gender" content="male" />
         <meta name="description" content={TranslationHelper.get(this.props.router, `meta_description`, this.props.userLang)} />
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="7 days" />
         <meta name="author" content="Eduardo Procopio Gomez" />
         <title>
           Eduardo Procopio Gomez | {TranslationHelper.get(this.props.router, `title`, this.props.userLang)}
