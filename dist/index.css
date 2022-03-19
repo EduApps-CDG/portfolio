@@ -83,12 +83,6 @@ button {
   cursor: pointer;
 }
 
-/*div.btn-border {
-  display: inline;
-  padding 
-  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
-}*/
-
 .btn-border {
   width: fit-content;
   clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
@@ -121,6 +115,10 @@ h2 {
   border-image: url(img/block.svg) stretch;
   border-image-width: 70px 60px 70px 60px;
   border-image-slice: 49% fill;
+}
+
+.view a {
+  color: dodgerblue;
 }
 
 .rtl {

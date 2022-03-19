@@ -9,6 +9,9 @@
     "start": "next start",
     "export": "next build && next export"
   },
+  "browser": {
+    "graphql-hooks-ssr": false
+  },
   "keywords": [],
   "author": "Eduardo P. Gomez",
   "license": "CPAL-1.0",

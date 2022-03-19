@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as Mdi from "@mdi/react";
 import Header from "../src/components/header";
 import GParticles from "../src/components/gparticles";
 import Welcome from "../src/components/welcome";
@@ -15,6 +16,7 @@ import { GetServerSidePropsContext } from "next";
 import Translations, { Language, TranslationHelper } from "../src/translations";
 import Head from "next/head";
 import { NextRouter, withRouter } from "next/router";
+import { mdiApplicationBrackets, mdiApplicationBracketsOutline } from "@mdi/js";
 
 class App extends React.Component<{userLang:Language,locale:string, router:NextRouter}> {
   render():React.ReactNode {
@@ -29,20 +31,20 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <meta name="title" content={"Eduardo Procopio Gomez | " + TranslationHelper.get(this.props.router,`title`,this.props.userLang)} />
+        <meta name="title" content={"Eduardo Procopio Gomez | " + TranslationHelper.gets(this.props.router,`title`,this.props.userLang)} />
         <meta property="og:locale" content={this.props.locale}/>
         <meta property="og:site_name" content="Portfolio de Eduardo Procopio Gomez" />
-        <meta property="og:title" content={"Eduardo Procopio Gomez | " + TranslationHelper.get(this.props.router,`title`,this.props.userLang)} />
+        <meta property="og:title" content={"Eduardo Procopio Gomez | " + TranslationHelper.gets(this.props.router,`title`,this.props.userLang)} />
         <meta property="og:url" content="https://eduardo.ix.tc" />
-        <meta property="og:description" content={TranslationHelper.get(this.props.router, `meta_description`, this.props.userLang)} />
+        <meta property="og:description" content={TranslationHelper.gets(this.props.router, `meta_description`, this.props.userLang)} />
         <meta property="og:type" content="profile" />
         <meta property="profile:first_name" content="Eduardo" />
         <meta property="profile:last_name" content="Procopio Gomez" />
         <meta property="profile:gender" content="male" />
-        <meta name="description" content={TranslationHelper.get(this.props.router, `meta_description`, this.props.userLang)} />
+        <meta name="description" content={TranslationHelper.gets(this.props.router, `meta_description`, this.props.userLang)} />
         <meta name="author" content="Eduardo Procopio Gomez" />
         <title>
-          Eduardo Procopio Gomez | {TranslationHelper.get(this.props.router, `title`, this.props.userLang)}
+          Eduardo Procopio Gomez | {TranslationHelper.gets(this.props.router, `title`, this.props.userLang)}
         </title>
         <link rel="canonical" href="https://eduardo.ix.tc"/>
         <html lang={this.props.locale} />
@@ -103,6 +105,22 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
                     padding: "10px"
                   }}>
                     <Button href="https://github.com/ArthurEly/projetoIntegradorFinal">
+                      <Translations lang={this.props.userLang} id="view_code" />
+                    </Button>
+                  </Rtl>
+                </div>
+              </View>
+              <View className="proj">
+                <Mdi.Icon path={mdiApplicationBracketsOutline} color="#CC0000"/>
+                <div className="short-content">
+                  <h3>Portfolio</h3>
+                  <p>
+                    <Translations lang={this.props.userLang} id="portfolio" />
+                  </p>
+                  <Rtl style={{
+                    padding: "10px"
+                  }}>
+                    <Button href="https://github.com/EduApps-CDG/portfolio">
                       <Translations lang={this.props.userLang} id="view_code" />
                     </Button>
                   </Rtl>
