@@ -5,5 +5,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   distDir: 'build',
-  compress:true
+  poweredByHeader: false,
+  compress: true,
+  unstable_runtimeJS: false,
+  reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp']
+  },
+  httpAgentOptions: {
+    keepAlive: false,
+  },
+  compiler: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  }
 })

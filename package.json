@@ -10,7 +10,8 @@
     "export": "next build && next export"
   },
   "browser": {
-    "graphql-hooks-ssr": false
+    "graphql-hooks-ssr": false,
+    "webpack": false
   },
   "keywords": [],
   "author": "Eduardo P. Gomez",

@@ -1,5 +1,4 @@
-import * as React from "react";
-import * as Mdi from "@mdi/react";
+import { Icon } from "@mdi/react";
 import Header from "../src/components/header";
 import GParticles from "../src/components/gparticles";
 import Welcome from "../src/components/welcome";
@@ -16,9 +15,10 @@ import { GetServerSidePropsContext } from "next";
 import Translations, { Language, TranslationHelper } from "../src/translations";
 import Head from "next/head";
 import { NextRouter, withRouter } from "next/router";
-import { mdiApplicationBrackets, mdiApplicationBracketsOutline } from "@mdi/js";
+import { mdiApplicationBracketsOutline } from "@mdi/js";
+import { Component } from "react";
 
-class App extends React.Component<{userLang:Language,locale:string, router:NextRouter}> {
+class App extends Component<{userLang:Language,locale:string, router:NextRouter}> {
   render():React.ReactNode {
     return <>
       <Head>
@@ -47,7 +47,13 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
           Eduardo Procopio Gomez | {TranslationHelper.gets(this.props.router, `title`, this.props.userLang)}
         </title>
         <link rel="canonical" href="https://eduardo.ix.tc"/>
-        <html lang={this.props.locale} />
+        <link rel="alternate" hrefLang="pt-BR" href="https://eduardo.ix.tc" />
+        <link rel="alternate" hrefLang="pt-PT" href="https://eduardo.ix.tc" />
+        <link rel="alternate" hrefLang="en-US" href="https://eduardo.ix.tc" />
+        <link rel="alternate" hrefLang="en-UK" href="https://eduardo.ix.tc" />
+        <link rel="alternate" hrefLang="en-GB" href="https://eduardo.ix.tc" />
+        {/* https://support.google.com/webmasters/thread/86451607?hl=en&msgid=86452356 */}
+        {/* <html lang={this.props.locale} /> */}
       </Head>
 
       <Header/>
@@ -111,7 +117,7 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
                 </div>
               </View>
               <View className="proj">
-                <Mdi.Icon path={mdiApplicationBracketsOutline} color="#CC0000"/>
+                <Icon path={mdiApplicationBracketsOutline} color="#CC0000"/>
                 <div className="short-content">
                   <h3>Portfolio</h3>
                   <p>
@@ -141,6 +147,7 @@ class App extends React.Component<{userLang:Language,locale:string, router:NextR
  * @returns 
  */
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  //ctx.res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`) 
   let langs;
   try {
     langs = ctx.req.headers["accept-language"].split(/(\;|\,)/).filter((val, i, arr) => {
