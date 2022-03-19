@@ -5,7 +5,6 @@ export default class doc extends Document<{ locale: string }> {
     return <>
       <Html>
         <Head>
-          <link rel='stylesheet' href='./index.css'/>
         </Head>
         <body className='theme-dark'>
           <Main/>

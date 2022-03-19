@@ -1,11 +1,12 @@
 import dynamic from "next/dynamic";
 import { Icon } from "@mdi/react";
-import Header from "../src/components/header";
 import Sawtooth from "../src/components/sawtooth";
-import View from "../src/components/view";
 import Button from "../src/components/button";
 import Rtl from "../src/components/rtl";
 import Image from "next/image";
+
+const View = dynamic(() => import("../src/components/view"));
+const Header = dynamic(() => import("../src/components/header"));
 const Welcome = dynamic(() => import("../src/components/welcome"));
 const Footer = dynamic(() => import("../src/components/footer"));
 const GParticles = dynamic(() => import("../src/components/gparticles"));
