@@ -1,13 +1,14 @@
+import dynamic from "next/dynamic";
 import { Icon } from "@mdi/react";
 import Header from "../src/components/header";
-import GParticles from "../src/components/gparticles";
-import Welcome from "../src/components/welcome";
 import Sawtooth from "../src/components/sawtooth";
 import View from "../src/components/view";
 import Button from "../src/components/button";
 import Rtl from "../src/components/rtl";
-import Footer from "../src/components/footer";
 import Image from "next/image";
+const Welcome = dynamic(() => import("../src/components/welcome"));
+const Footer = dynamic(() => import("../src/components/footer"));
+const GParticles = dynamic(() => import("../src/components/gparticles"));
 
 import arthos from "../dist/img/arthos.png";
 import netflocos from "../dist/img/netflocos.png";
