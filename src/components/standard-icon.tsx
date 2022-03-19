@@ -13,7 +13,7 @@ export default class StandardIcon extends React.Component<StandardIconProps> {
 
   render() {
     return <>
-      <a href={this.props.href} target="_blank">
+      <a href={this.props.href} target="_blank" rel="noreferrer">
         <Mdi.Icon className="icon" path={this.props.path}/>
       </a>
     </>
