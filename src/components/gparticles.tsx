@@ -8,7 +8,7 @@ export default class GParticles extends React.Component {
         options={{
           background: {
             color: {
-              value: "#0D0D0D"
+              value: "#161616"
             }
           },
           interactivity: {
