@@ -69,7 +69,7 @@ class App extends Component<{userLang:Language,locale:string, router:NextRouter}
           <h2 className="centerizer">
             <Translations lang={this.props.userLang} id="about_me"/>
           </h2>
-          <p>
+          <p className="container">
             <Translations lang={this.props.userLang} id="about_me_txt" />
           </p>
         </section>
