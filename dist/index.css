@@ -167,7 +167,7 @@ footer {
 }
 
 footer > .contact-icon {
-  width: 50%;
   min-width: 224px;
   margin-top: 34px;
+  gap: 5px;
 }
